@@ -243,6 +243,38 @@ header {
     padding: 1rem;
     border-radius: 10px;
     position: relative;
+    overflow-y: hidden;
+    scrollbar-width: none;      /* Firefox */
+    -ms-overflow-style: none;   /* IE / Edge viejo */
+}
+
+#modalContent::-webkit-scrollbar {
+  display: none;              /* Chrome / Safari */
+}
+
+#modalContent::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2rem;
+  background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.7) 25%, #fff 90%);
+  pointer-events: none;
+}
+
+/* este es el que scrollea */
+#modalScroll {
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 0 1rem 1rem 1rem;
+
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+#modalScroll::-webkit-scrollbar {
+  display: none;
 }
 
 #modalGallery {
@@ -265,6 +297,29 @@ header {
 
 #modalDesc {
     white-space: pre-line;
+    margin-bottom: 2rem;
+}
+
+/* ---------- MODAL MOBILE ---------- */
+@media (max-width: 600px) {
+  #modalContent {
+    width: 95%;
+    max-width: none;
+    height: auto;           /* clave */
+    max-height: 85vh;       /* límite razonable */
+    padding: 1rem;
+    /* overflow-y: auto;       scroll interno si hace falta */
+    border-radius: 16px;
+  }
+
+  #modalGallery {
+    max-height: 50vh;       /* evita que la imagen domine todo */
+  }
+
+  #modalGallery img {
+    max-height: 50vh;
+    object-fit: cover;
+  }
 }
 
 footer {
