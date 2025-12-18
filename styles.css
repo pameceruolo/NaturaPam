@@ -1,0 +1,416 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #fafafa;
+    background-image: url();
+}
+
+header {
+    background-image: url("images/HeaderBG.png");
+    /* color: white; */
+    text-align: center;
+    /* font-size: 1.5rem; */
+}
+
+#naturaLogo {
+    background-image: linear-gradient(to bottom, transparent, #ffffffbb);
+    padding: 7rem 0 1rem 0;
+}
+
+#naturaLogo img {
+    max-width: 200px;
+}
+
+#vendedora {
+    width: 100%;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-evenly;
+    text-align: center;
+    background-image: linear-gradient(to bottom, #ffffffbb, white);
+}
+
+#customHr {
+    border: none;
+    margin: 0;
+    position: relative;
+    top: 5px;
+    height: 2px;
+    background-color: #ffffff73;
+}
+
+#viewToggle {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding: 15px 0 10px 0;
+    background: linear-gradient(109.54deg, rgb(236, 108, 36) 24.35%, rgb(253, 176, 60) 140.11%);
+}
+
+#viewToggle button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex: 1;                 /* 👈 MISMO ANCHO */
+    min-width: 100px;        /* 👈 mínimo cómodo al tacto */
+    max-width: 130px;        /* 👈 no se estiran de más */
+    padding: 0.6rem 1rem;
+    border-radius: 999px;    /* pill style */
+    border: 1.5px solid white;
+    background: #a13f00;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+#viewToggle .icon {
+    width: 18px;
+    height: 18px;
+    display: inline-flex;
+}
+
+#viewToggle svg {
+    width: 100%;
+    height: 100%;
+    fill: currentColor; /* hereda color del botón */
+}
+
+@media (max-width: 480px) {
+    #viewToggle button span:not(.icon) {
+    display: none;
+    }
+}
+
+#products {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+/* ---------- ESTILO GENERAL DEL PRODUCTO ---------- */
+.product {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    cursor: pointer;
+    display: flex;
+    overflow: hidden;
+    transition: .2s;
+    position: relative;
+}
+
+.product:hover {
+    transform: scale(1.02);
+}
+
+.product-info {
+    width: 45%;
+}
+
+.product-image {
+    position: relative;  /* necesario para que .img-count se ubique sobre la imagen */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ---------- VISTA LISTA (2 por fila en desktop) ---------- */
+.product.list {
+    flex-direction: row;
+    width: calc(49% - 1rem);
+    height: 160px;
+    padding: .5rem;
+    align-items: stretch;   /* importante */
+    gap: 1rem;
+}
+
+/* contenedor imagen */
+.product.list .product-image {
+    width: 40%;
+    height: 100%;
+    border-radius: 7px;
+    overflow: hidden;
+}
+
+/* imagen */
+.product.list .product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;       /* llena y recorta */
+    object-position: center; /* centrada */
+}
+
+/* info */
+.product.list .product-info {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.product.list h3 {
+    margin: 0 0 .5rem 0;
+    font-size: 1rem;
+}
+
+.product.list p {
+    margin: 0;
+    font-weight: bold;
+}
+
+/* ---------- VISTA CUADRÍCULA CON OVERLAY ---------- */
+.product.grid {
+    flex-direction: column;
+    width: calc(32% - 1rem);
+    height: 320px;
+    padding: .5rem;
+    text-align: center;
+    padding: 0;
+}
+
+.product.grid .product-image {
+    width: 100%;
+    height: 100%;
+}
+
+.product.grid .product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.product.grid .product-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: .6rem .7rem;
+    background: linear-gradient(to top,rgba(255,255,255,0.7),rgba(255,255,255,0.35));
+    text-shadow: 0 0 2px white;
+    backdrop-filter: blur(4px);
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    box-sizing: border-box;
+    transition: background 0.2s ease;
+}
+
+.product.grid:hover .product-info {
+    background: rgba(255,255,255,0.65);
+}
+
+#product-grid-image {
+    height: 50%;
+}
+
+.product.grid h3 {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.2;
+}
+
+.product.grid p {
+    margin: 0;
+    font-weight: bold;
+    font-size: 1rem;
+    letter-spacing: 0.3px;
+}
+
+/* ---------- MODAL ---------- */
+#modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+#modalContent {
+    background: white;
+    width: 90%;
+    max-width: 400px;
+    height: 90vh;
+    padding: 1rem;
+    border-radius: 10px;
+    position: relative;
+}
+
+#modalGallery {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+#modalGallery img {
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    object-fit: cover;       /* rellena, recorta si hace falta */
+    object-position: center; /* centrada */
+    display: block;
+    border-radius: 10px;
+}
+
+#modalDesc {
+    white-space: pre-line;
+}
+
+footer {
+    background: #e8e8e8;
+    padding: 1rem;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+/* ----- Responsive Tablet (máx 900px): 2 por fila en grid, 2 en lista ----- */
+@media (max-width: 900px) {
+    .product.grid {
+    width: calc(50% - 1rem);
+    }
+    .product.list {
+    width: calc(100% - 1rem);  /* lista vuelve a 1 por fila para mantener legibilidad */
+    }
+}
+
+/* ----- Responsive Móvil (máx 600px): 1 por fila siempre ----- */
+@media (max-width: 600px) {
+    .product.grid,
+    .product.list {
+    width: 100%;
+    }
+
+    .product.list {
+    height: 140px;
+    }
+}
+
+/* ---------- LIGHTBOX GALERÍA ---------- */
+#lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.9);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+#lightbox img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+}
+
+#lightboxClose {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 2.5rem;
+    color: white;
+    cursor: pointer;
+}
+
+#lightboxPrev,
+#lightboxNext {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 3rem;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 1rem;
+}
+
+#lightboxPrev { left: 20px; }
+#lightboxNext { right: 20px; }
+
+/* Lightbox image base */
+#lightboxImg {
+    transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.fade-out {
+    opacity: 0;
+    transform: scale(0.95);
+}
+
+.fade-in {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.lightbox-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.6);
+    color: white;
+    border: none;
+    font-size: 2rem;
+    padding: .3rem .6rem;
+    cursor: pointer;
+    border-radius: 8px;
+    z-index: 10;
+}
+
+.lightbox-btn.prev {
+    left: 10px;
+}
+
+.lightbox-btn.next {
+    right: 10px;
+}
+
+.lightbox-btn.disabled {
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+#lightbox-btn.disabled {
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+#lightboxCounter {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(0,0,0,0.5);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    pointer-events: none;
+}
+
+.img-count {
+    position: absolute;
+    bottom: 8px;   /* ahora esquina inferior */
+    right: 8px;
+    background: rgba(237, 237, 237, 0.55);
+    color: black;
+    font-size: 0.75rem;
+    padding: 3px 6px;
+    border-radius: 12px;
+    pointer-events: none;
+}
+
+.product.grid .img-count {
+    top: 8px;
+    bottom: auto;
+    right: 8px;
+}

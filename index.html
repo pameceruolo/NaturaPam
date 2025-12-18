@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles.css">
+  <title>Natura - Productos</title>
+</head>
+<body>
+
+  <header>
+    <div id="naturaLogo">
+      <img src="https://www.naturabrasil.com/cdn/shop/files/natura_-_orange_-_horizontal.png?v=1726237710&width=300" alt="NaturaLogo">
+    </div>
+    <div id="vendedora">
+      <div>
+        <p><strong>Vendedora: </strong>Pame Ceruolo</p>
+        <p><strong>Código: </strong>2846524</p>
+      </div>
+      <div>
+        <p><a href="https://short.natura.com/k-5BWRX" target="_blank">Ver revista Natura</a></p>
+        <p><a href="https://wa.me/5491134960417" target="_blank">WhatsApp</a></p>
+      </div>
+    </div>
+  </header>
+  <hr id="customHr">
+  <div id="viewToggle">
+    <button onclick="setList()">
+      <span class="icon">
+        <svg viewBox="0 0 24 24">
+          <rect x="3" y="4" width="18" height="3"/>
+          <rect x="3" y="10.5" width="18" height="3"/>
+          <rect x="3" y="17" width="18" height="3"/>
+        </svg>
+      </span>
+      Lista
+    </button>
+
+    <button onclick="setGrid()">
+      <span class="icon">
+        <svg viewBox="0 0 24 24">
+          <rect x="3" y="3" width="7" height="7"/>
+          <rect x="14" y="3" width="7" height="7"/>
+          <rect x="3" y="14" width="7" height="7"/>
+          <rect x="14" y="14" width="7" height="7"/>
+        </svg>
+      </span>
+      Mosaico
+    </button>
+  </div>
+
+  <div id="products"></div>
+
+  <!-- Modal -->
+  <div id="modal" onclick="closeModal(event)">
+    <div id="modalContent">
+      <h2 id="modalTitle"></h2>
+      <div id="modalGallery"></div>
+      <p id="modalDesc"></p>
+      <strong id="modalPrice"></strong>
+    </div>
+  </div>
+
+  <script src="products-data.js"></script>
+  <script src="products.js"></script>
+
+  <!-- Lightbox Galería -->
+  <div id="lightbox" onclick="closeLightbox(event)">
+    <span id="lightboxClose">×</span>
+    <img id="lightboxImg" />
+    <button id="lightboxPrev">‹</button>
+    <button id="lightboxNext">›</button>
+    <div id="lightboxCounter"></div>
+  </div>
+
+</body>
+</html>
