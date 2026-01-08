@@ -240,6 +240,7 @@ header {
     width: 90%;
     max-width: 400px;
     height: 90vh;
+    height: 90dvh;
     padding: 1rem;
     border-radius: 10px;
     position: relative;
