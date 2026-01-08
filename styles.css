@@ -391,8 +391,20 @@ footer {
     padding: 1rem;
 }
 
-#lightboxPrev { left: 20px; }
-#lightboxNext { right: 20px; }
+#lightboxPrev {
+    left: 20px;
+    background-image: linear-gradient(to right, #00000099, #00000011);
+    border-radius: 0 150px 150px 0;
+    border: 1px solid white;
+    border-left: 0;
+}
+#lightboxNext {
+    right: 20px;
+    background-image: linear-gradient(to left, #00000099, #00000011);
+    border-radius: 150px 0 0 150px;
+    border: 1px solid white;
+    border-right: 0;
+}
 
 /* Lightbox image base */
 #lightboxImg {
