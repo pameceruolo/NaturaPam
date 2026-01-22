@@ -1,12 +1,23 @@
 let currentGrid = false;
 let container;
+const VIEW_KEY = "natura_products_view";
 
 function initializeContainer() {
   container = document.getElementById("products");
+
+  const savedView = localStorage.getItem(VIEW_KEY);
+
+  if (savedView === "grid") {
+    currentGrid = true;
+  } else {
+    currentGrid = false; // lista por defecto
+  }
+
   if (container) {
     renderProducts(currentGrid);
   }
 }
+
 
 function renderProducts(isGrid = false) {
   container.innerHTML = "";
@@ -59,13 +70,16 @@ function renderProducts(isGrid = false) {
 
 function setList() {
   currentGrid = false;
+  localStorage.setItem(VIEW_KEY, "list");
   renderProducts(false);
 }
 
 function setGrid() {
   currentGrid = true;
+  localStorage.setItem(VIEW_KEY, "grid");
   renderProducts(true);
 }
+
 
 function showModal(i) {
   const p = products[i];
