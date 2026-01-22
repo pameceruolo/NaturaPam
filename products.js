@@ -16,6 +16,11 @@ function renderProducts(isGrid = false) {
     const div = document.createElement("div");
     div.className = "product" + (isGrid ? " grid" : " list");
 
+    // Disponibilidad
+    if (!p.available) {
+      div.classList.add("sold-out");
+    }
+
     // contenedor imagen
     const imageWrapper = document.createElement("div");
     imageWrapper.className = "product-image";
