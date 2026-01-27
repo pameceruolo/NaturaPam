@@ -16,6 +16,7 @@ function initializeContainer() {
   if (container) {
     renderProducts(currentGrid);
   }
+  updateViewButtons();
 }
 
 
@@ -72,14 +73,25 @@ function setList() {
   currentGrid = false;
   localStorage.setItem(VIEW_KEY, "list");
   renderProducts(false);
+  updateViewButtons();
 }
 
 function setGrid() {
   currentGrid = true;
   localStorage.setItem(VIEW_KEY, "grid");
   renderProducts(true);
+  updateViewButtons();
 }
 
+function updateViewButtons() {
+  const btnList = document.getElementById("btnList");
+  const btnGrid = document.getElementById("btnGrid");
+
+  if (!btnList || !btnGrid) return;
+
+  btnList.classList.toggle("active", !currentGrid);
+  btnGrid.classList.toggle("active", currentGrid);
+}
 
 function showModal(i) {
   const p = products[i];
