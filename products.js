@@ -1,6 +1,7 @@
 let currentGrid = false;
 let container;
 const VIEW_KEY = "natura_products_view";
+window.addEventListener("resize", updateCTAPlacement);
 
 function initializeContainer() {
   container = document.getElementById("products");
@@ -19,14 +20,15 @@ function initializeContainer() {
   updateViewButtons();
 }
 
-
 function renderProducts(isGrid = false) {
   container.innerHTML = "";
-  products.forEach((p, index) => {
 
+  products.forEach((p, index) => {
     // contenedor general del producto
     const div = document.createElement("div");
     div.className = "product" + (isGrid ? " grid" : " list");
+
+    container.classList.toggle("grid-view", isGrid);
 
     // Disponibilidad
     if (!p.available) {
@@ -67,6 +69,55 @@ function renderProducts(isGrid = false) {
     
     container.appendChild(div);
   });
+
+  addWhatsAppCTA(isGrid);
+  // 👇 importante
+  updateCTAPlacement();
+}
+
+function addWhatsAppCTA(isGrid) {
+  if (!container) return;
+
+  const cta = document.createElement("div");
+  cta.className = "product product-cta" + (isGrid ? " grid" : " list");
+  // <div class="cta-icon"><img src="https://static.whatsapp.net/rsrc.php/yZ/r/JvsnINJ2CZv.svg"></div>
+
+  cta.innerHTML = `
+    <div class="cta-content">
+    <div class="cta-icon"><img src="https://static.whatsapp.net/rsrc.php/yA/r/hbGnlm1gXME.svg"></div>
+    <h3>¿Buscás otros productos?</h3>
+      <p>Consultanos por WhatsApp y te contamos qué hay disponible</p>
+      <a
+        href="https://wa.me/5491134960417"
+        target="_blank"
+        class="cta-button"
+      >
+        Consultar por WhatsApp
+      </a>
+    </div>
+  `;
+
+  // ❌ Importante: que no abra el modal
+  cta.onclick = (e) => e.stopPropagation();
+
+  container.appendChild(cta);
+}
+
+function updateCTAPlacement() {
+  const container = document.getElementById("products");
+  const cta = container.querySelector(".product-cta");
+  if (!cta) return;
+
+  const styles = getComputedStyle(container);
+  const columns = styles.gridTemplateColumns.split(" ").length;
+
+  const totalItems = container.children.length;
+  const itemsInLastRow = totalItems % columns;
+
+  const shouldBeFull =
+    columns === 1 || itemsInLastRow === 1;
+
+  cta.classList.toggle("full", shouldBeFull);
 }
 
 function setList() {
@@ -101,35 +152,34 @@ function showModal(i) {
   document.getElementById("modalPrice").innerHTML = p.price;
 
   const gallery = document.getElementById("modalGallery");
-gallery.innerHTML = "";  // limpio
+  gallery.innerHTML = "";  // limpio
 
-p.images.forEach((img, idx) => {
-  const imageWrapper = document.createElement("div");
-  imageWrapper.style.position = "relative";  // para el contador
-  imageWrapper.style.height = "100%";
+  p.images.forEach((img, idx) => {
+    const imageWrapper = document.createElement("div");
+    imageWrapper.style.position = "relative";  // para el contador
+    imageWrapper.style.height = "100%";
 
-  const image = document.createElement("img");
-  image.src = "images/" + img;
-  image.style.cursor = "zoom-in";
+    const image = document.createElement("img");
+    image.src = "images/" + img;
+    image.style.cursor = "zoom-in";
 
-  image.onclick = (e) => {
-    e.stopPropagation();
-    openLightbox(p.images, idx);
-  };
+    image.onclick = (e) => {
+      e.stopPropagation();
+      openLightbox(p.images, idx);
+    };
 
-  imageWrapper.appendChild(image);
+    imageWrapper.appendChild(image);
 
-  // Contador sobre cada imagen en modal
-  const badge = document.createElement("div");
-  badge.className = "img-count";
-  badge.textContent = `${idx + 1} / ${p.images.length}`;
-  badge.style.bottom = "5px";  // posición inferior
-  badge.style.top = "auto";     // sobreescribe top
-  imageWrapper.appendChild(badge);
+    // Contador sobre cada imagen en modal
+    const badge = document.createElement("div");
+    badge.className = "img-count";
+    badge.textContent = `${idx + 1} / ${p.images.length}`;
+    badge.style.bottom = "5px";  // posición inferior
+    badge.style.top = "auto";     // sobreescribe top
+    imageWrapper.appendChild(badge);
 
-  gallery.appendChild(imageWrapper);
-});
-
+    gallery.appendChild(imageWrapper);
+  });
 
   document.getElementById("modal").style.display = "flex";
   // const prevBtn = document.getElementById("lightboxPrev");
