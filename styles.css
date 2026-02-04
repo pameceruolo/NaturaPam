@@ -201,6 +201,8 @@ header {
 }
 
 .product-cta {
+    position: relative;
+    overflow: hidden;
     grid-column: span 1;
     padding: 1.5rem;
     box-sizing: border-box;
@@ -214,17 +216,37 @@ header {
     box-shadow: 0 6px 16px rgba(37, 211, 102, 0.35);
 }
 
-/* .product-cta {
-    grid-column: span 1;
-    background: linear-gradient(
-        135deg,
-        #a13f00,
-        #c45400
-    );
-    color: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+/* .product-cta::before,
+.product-cta::after {
+  content: "";
+  position: absolute;
+  inset: 22% 0% 0 50%;
+  width: 10px;
+  height: 10px;
+  background-image: radial-gradient(#ffffff00, #ffffff00, #ffffff66, #ffffffff);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: ripple 4s infinite;
+  pointer-events: none;
 } */
+
+.product-cta::after {
+  animation-delay: 2s;
+}
+
+@keyframes ripple {
+  0% {
+    width: 10px;
+    height: 10px;
+    opacity: .6;
+  }
+  100% {
+    width: 260px;
+    height: 260px;
+    opacity: 0;
+  }
+}
+
 
 .product-cta.full {
     grid-column: 1 / -1;
@@ -249,6 +271,16 @@ header {
     .product-cta.list {
         width: 100%;
     }
+}
+
+.cta-icon {
+  filter: drop-shadow(0 0 6px #FFF6);
+  animation: pulse 4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
 }
 
 .product-cta .cta-content {
@@ -297,7 +329,7 @@ header {
     gap: 0.6rem;
     padding: 0.65rem 1.6rem;
     background: white;
-    color: #128C7E;
+    color: #128c3e;
     border-radius: 999px;
     font-weight: bold;
     text-decoration: none;

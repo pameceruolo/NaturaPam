@@ -84,7 +84,7 @@ function addWhatsAppCTA(isGrid) {
 
   cta.innerHTML = `
     <div class="cta-content">
-    <div class="cta-icon"><img src="https://static.whatsapp.net/rsrc.php/yA/r/hbGnlm1gXME.svg"></div>
+    <div class="cta-icon"><img src="https://static.whatsapp.net/rsrc.php/yA/r/hbGnlm1gXME.svg" class="cta-icon"></div>
     <h3>¿Buscás otros productos?</h3>
       <p>Consultanos por WhatsApp y te contamos qué hay disponible</p>
       <a
