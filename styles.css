@@ -20,6 +20,9 @@ header {
 
 #naturaLogo img {
     max-width: 40%;
+    min-width: 200px;
+    filter: drop-shadow(0 0 6px #FFF6);
+    animation: pulse 8s ease-in-out infinite;
 }
 
 #vendedora {
@@ -29,7 +32,107 @@ header {
     justify-content: space-evenly;
     text-align: center;
     background-image: linear-gradient(to bottom, #ffffffbb, white);
+    padding: .9rem 0;
+    align-items: center;
 }
+
+/* ===== Datos ===== */
+
+.seller-data {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.data-block {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+}
+
+.label {
+    font-size: .7rem;
+    color: #777;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+}
+
+.value {
+    font-weight: 600;
+    font-size: .95rem;
+}
+
+.data-divider {
+    width: 1px;
+    height: 28px;
+    background: rgba(0,0,0,.2);
+}
+
+/* ===== Botones ===== */
+
+.seller-links {
+    display: flex;
+    gap: .6rem;
+}
+
+.seller-btn {
+    padding: .45rem .9rem;
+    border-radius: 12px;
+    font-size: .85rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Revista */
+
+.seller-btn.magazine {
+    background: #eee;
+    color: #333;
+}
+
+.seller-btn.magazine:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,.18);
+    transform: translateY(-1px);
+}
+
+/* WhatsApp (alineado con tu CTA verde) */
+
+.seller-btn.whatsapp {
+    background: #25D366;
+    color: white;
+    box-shadow: 0 0 8px rgba(37,211,102,.45);
+}
+
+.seller-btn.whatsapp:hover {
+    box-shadow: 0 0 14px rgba(37,211,102,.75);
+    transform: translateY(-1px);
+    filter: brightness(1.05);
+}
+
+/* ===== Responsive ===== */
+
+@media (max-width: 700px) {
+    #vendedora {
+        flex-direction: column;
+        gap: .7rem;
+    }
+
+    .seller-links {
+        width: 95%;
+        flex-direction: column;
+    }
+
+    .seller-btn {
+        width: 100%;
+        text-align: center;
+        padding: .45rem 0;
+    }
+}
+
 
 #customHr {
     border: none;
