@@ -111,7 +111,7 @@ const products = [
     price: "$12.000",
     desc: `Crema corporal Ekos con la suavidad de Tukuma para hidratar todo el cuerpo.`,
     images: ["EkosCremaCuerpoTukuma01.jpeg", "EkosCremaCuerpoTukuma02.jpeg"],
-    available: true
+    available: false
   },
   {
     title: "Perfume Beijo De Humor Masculino",
@@ -157,20 +157,20 @@ const products = [
     price: "$15.000",
     desc: `Protector solar SPF 50 para rostro con propiedades hidratantes.`,
     images: ["ProtectorSolar50FacialHidratacion01.jpeg"],
-    available: true
+    available: false
   },
   {
     title: "Protector Solar 70 Facial Hidratación",
     price: "$15.000",
     desc: `Protector solar SPF 70 para rostro con máxima protección e hidratación.`,
     images: ["ProtectorSolar70FacialHidratacion01.jpeg"],
-    available: true
+    available: false
   },
   {
     title: "Protector Solar Facial Oleosidad",
     price: "$15.000",
     desc: `Protector solar para rostro con control de oleosidad.`,
     images: ["ProtectorSolarFacialOleosidad01.jpeg"],
-    available: true
+    available: false
   }
 ];
